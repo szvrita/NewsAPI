@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title='NewsPage'
+    meta(charset='UTF-8')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css', rel='stylesheet')
+
+  body
+    h1 News Page
+    div
+      p.powered
+        | Powered by:
+        a#powerLink(target='_blank', href='http://newsapi.org') NewsAPI.org
+    div#list
+        - var myArray = newsAll;
+          - for (var i = 0; i < myArray.length; i++){
+          div.news(newsid=myArray[i].id)
+            img.logos(src='https://icons.better-idea.org/icon?url=' + myArray[i].url + '&size=70..120..200')
+            a.names(target='_blank', href=myArray[i].url) #{myArray[i].name}
+            p.descr #{myArray[i].description}
+            button.btn.btn-outline-primary(buttonid=myArray[i].id, onmouseover="style.cursor='pointer'") See the news...
+            div.pages
+              div.card-deck(pageid=myArray[i].id)
+
+
+        -}
+
+
+
+script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
+script(type='text/javascript', src='/javascripts/newspage.js')
